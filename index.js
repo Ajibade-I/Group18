@@ -14,10 +14,9 @@ app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
 
 app.use(express.json());
 
-app.use("/api/users", accesslogs, userRouter);
+app.use("/api/user", accesslogs, userRouter);
 app.use(notFound);
 app.use(errorHandler);
-
 
 dbConnect();
 app.listen(port, () => console.log(`Server listening on port ${port}....`));

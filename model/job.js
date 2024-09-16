@@ -21,7 +21,21 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
     salaryRange: {
-      type: String,
+      currency: {
+        type: String,
+        trim: true,
+        default: "NGN",
+      },
+      min: {
+        type: Number,
+        trim: true,
+        default: 0,
+      },
+      max: {
+        type: Number,
+        trim: true,
+        default: Infinity,
+      },
     },
     jobType: {
       type: String,
@@ -35,7 +49,7 @@ const jobSchema = new mongoose.Schema(
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "JobProvider",
-      required: true,
+      // required: true,
     },
     status: {
       type: String,
@@ -50,7 +64,7 @@ const jobSchema = new mongoose.Schema(
           enum: ["applied", "interview", "offered", "rejected"],
           default: "applied",
         },
-        appliedAt: { type: Date, default: Date.now },
+        appliedAt: { type: Date, default: Date.now() },
       },
     ],
   },

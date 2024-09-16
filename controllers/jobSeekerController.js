@@ -1,12 +1,11 @@
 const JobSeeker = require("../model/jobSeeker");
 const User = require("../model/users");
 
-
 // Create a new Job Seeker profile
 const createJobSeeker = async (req, res) => {
   const { resumeUrl, skills, experience } = req.body;
 
-  const userId = req.user._id
+  const userId = req.user._id;
 
   // Ensure user exists
   const user = await User.findById(userId);
@@ -24,7 +23,7 @@ const createJobSeeker = async (req, res) => {
 
   await jobSeeker.save();
 
-  return res.status(200).json({
+  return res.status(201).json({
     success: true,
     data: jobSeeker,
     msg: "Job seeker profile created successfully",
@@ -33,14 +32,11 @@ const createJobSeeker = async (req, res) => {
 
 // Update Job Seeker experience
 const updateExperience = async (req, res) => {
-  
-    const { jobSeekerId, experience } = req.body;
+  const { jobSeekerId, experience } = req.body;
 
   const jobSeeker = await JobSeeker.findById(jobSeekerId);
   if (!jobSeeker) {
-    return res
-      .status(404)
-      .json({ msg: "Job Seeker not found" });
+    return res.status(404).json({ msg: "Job Seeker not found" });
   }
 
   jobSeeker.experience.push(experience);
@@ -55,25 +51,23 @@ const updateExperience = async (req, res) => {
 
 // Apply for a job
 const applyForJob = async (req, res) => {
+  const { jobSeekerId, jobId } = req.body;
 
-    const { jobSeekerId, jobId } = req.body;
+  const jobSeeker = await JobSeeker.findById(jobSeekerId);
+  if (!jobSeeker) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ msg: "Job Seeker not found" });
+  }
 
-    const jobSeeker = await JobSeeker.findById(jobSeekerId);
-    if (!jobSeeker) {
-      return res
-        .status(StatusCodes.NOT_FOUND)
-        .json({ msg: "Job Seeker not found" });
-    }
+  jobSeeker.applications.push({ job: jobId });
+  await jobSeeker.save();
 
-    jobSeeker.applications.push({ job: jobId });
-    await jobSeeker.save();
-
-    return res.status(StatusCodes.OK).json({
-      success: true,
-      data: jobSeeker,
-      msg: "Applied for job successfully",
-    });
-
+  return res.status(StatusCodes.OK).json({
+    success: true,
+    data: jobSeeker,
+    msg: "Applied for job successfully",
+  });
 };
 
 module.exports = { createJobSeeker, updateExperience, applyForJob };

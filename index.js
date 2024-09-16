@@ -7,7 +7,14 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { errorHandler, notFound } = require("./lib/midlleware/error-middleware");
 const accesslogs = require("./lib/midlleware/accesslogs");
-const { userRouter, jobProviderRouter, jobSeekerRouter } = require("./routes/routesIndex");
+const {
+  userRouter,
+  jobProviderRouter,
+  jobSeekerRouter,
+} = require("./routes/routesIndex");
+
+const http = require("http"); // HTTP server
+const { initSocket } = require("./config/webSocket");
 
 const app = express();
 const port = process.env.PORT || 7500;
@@ -21,5 +28,16 @@ app.use("/api/jobSeeker", accesslogs, jobSeekerRouter);
 app.use(notFound);
 app.use(errorHandler);
 
+const server = http.createServer(app);
+
+// Initialize WebSocket server
+const io = initSocket(server); // Pass the HTTP server
+
+// Optional: Pass io to the request object (middleware) if needed in routes
+app.use((req, res, next) => {
+  req.io = io; // Attach io instance to req object
+  next();
+});
+
 dbConnect();
-app.listen(port, () => console.log(`Server listening on port ${port}....`));
+server.listen(port, () => console.log(`Server listening on port ${port}....`));

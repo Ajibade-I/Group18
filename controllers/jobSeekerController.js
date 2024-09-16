@@ -74,4 +74,4 @@ const updateExperience = async (req, res) => {
 
 // };
 
-module.exports = { createJobSeeker, updateExperience, applyForJob };
+module.exports = { createJobSeeker, updateExperience };

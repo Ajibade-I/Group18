@@ -70,13 +70,13 @@ const activateAccount = async (req, res) => {
   }
 
   //reassign user properties
-  user.isActivated = true;
+  user.isVerified = true;
   user.AccountactivationToken = undefined;
   user.AccountTokenExpires = undefined;
 
   await user.save();
 
-  return succesResponse(res, "Account activated");
+ res.status(200).json({message:"Account activated"})
 };
 
 //@Method:POST /auth/login
@@ -100,7 +100,7 @@ const Login = async (req, res) => {
   }
 
   // Check if the user is activated
-  if (!user.isActivated) {
+  if (!user.isVerified) {
     // Check if the account activation token has expired
     if (user.AccountTokenExpires < Date.now()) {
       // Generate a new activation token

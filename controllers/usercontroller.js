@@ -84,54 +84,68 @@ const activateAccount = async (req, res) => {
 //@Access:Private
 
 const Login = async (req, res) => {
-  //validate login body
-  const error = await validateLogin(req.body);
-  if (error) {
-    throw new BadRequestError(error);
-  }
-  const { email_or_userName, password } = req.body;
+  // Extract email and password from the request body
+  const { email, password } = req.body;
 
-  //find user by email or username
-  const user = await User.findOne({
-    $or: [
-      { email: email_or_userName },
-      { "profile.userName": email_or_userName },
-    ],
-  });
-
+  // Find the user by email
+  const user = await User.findOne({ email });
   if (!user) {
     throw new BadRequestError("Invalid email or password");
   }
 
-  //check if password is correct
-  const valid = await bcryptjs.compare(password, user.password);
-  if (!valid) {
+  // Check if password is valid
+  const validPassword = await bcryptjs.compare(password, user.password);
+  if (!validPassword) {
     throw new BadRequestError("Invalid email or password");
   }
 
-  const email = user.email;
-  //check if user is activated
+  // Check if the user is activated
   if (!user.isActivated) {
-    const response = await checkValidation(user, email);
-    res.status(200).json(response);
-    return;
+    // Check if the account activation token has expired
+    if (user.AccountTokenExpires < Date.now()) {
+      // Generate a new activation token
+      const token = await bcryptjs.hash(email.toString(), 10);
+      const thirtyMinutes = 30 * 60 * 1000;
+
+      // Update the user's account activation token and expiration time
+      user.AccountactivationToken = token;
+      user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
+
+      // Save the updated user details to the database
+      await user.save();
+
+      // Send the new activation token via email
+      await sendAccountActivation({ email, token });
+
+      return res.status(200).json({
+        msg: "Account not activated. A new activation link has been sent to your email.",
+      });
+    }
+
+    return res.status(200).json({
+      msg: "Account not activated. Click the link in your email to activate your account.",
+    });
   }
 
-  //check if account has been suspended
-  if (user.accountStatus !== "active") {
-    throw new Unauthorized("Your account has been suspended");
-  }
-  //create payload
+  // Create payload for the JWT token
   const payload = {
     _id: user._id,
     email: user.email,
   };
 
-  //encrypt payload to create token
+  const data = {
+    id: user._id,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    role: user.role,
+  };
+
+  // Encrypt the payload to create the JWT token
   const token = jwt.sign(payload, process.env.JWT_PRIVATE_KEY);
   const oneDay = 24 * 60 * 60 * 1000;
 
-  //send accessToken as a cookie
+  // Send accessToken as a cookie
   res.cookie("accessToken", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -139,7 +153,11 @@ const Login = async (req, res) => {
     expires: new Date(Date.now() + oneDay),
   });
 
-  return res.status(200).json({ message: "Log in succesfull" });
+  // Respond with a success message and user data
+  res.status(201).json({
+    success: true,
+    user: data,
+    message: "Login successful",
+  });
 };
-
 module.exports = { signup, Login, activateAccount };

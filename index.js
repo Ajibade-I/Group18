@@ -23,7 +23,7 @@ app.use(express.json());
 app.use("/api/user", accesslogs, userRouter);
 app.use("/api/jobProvider", accesslogs, jobProviderRouter);
 app.use("/api/jobSeeker", accesslogs, jobSeekerRouter);
-app.use("/api/job", jobRouter);
+app.use("/api/job", accesslogs, jobRouter);
 app.use(notFound);
 app.use(errorHandler);
 

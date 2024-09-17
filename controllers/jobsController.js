@@ -4,8 +4,6 @@ const { CustomApiError } = require("../lib/error");
 const JobProvider = require("../model/jobProvider");
 
 const createJob = async (req, res) => {
-  // check if user is Jobseeker or JobProvider
-
   const userRole = req.user.role;
 
   const {
@@ -20,6 +18,10 @@ const createJob = async (req, res) => {
     jobFormat,
     status,
   } = req.body;
+
+  // check if user is Jobseeker or JobProvider
+
+  // if user is JobProvider create  with postedBy
 
   if (userRole === JobProvider) {
     const jobs = await Job.create({
@@ -60,6 +62,8 @@ const createJob = async (req, res) => {
   }
 };
 
+// update any of the jobs parameters
+
 const updateJob = async (req, res) => {
   const id = req.params.id;
   const {
@@ -74,15 +78,18 @@ const updateJob = async (req, res) => {
     jobFormat,
     status,
   } = req.body;
+  // using query parameter to find the particular job
 
   const findJob = await Job.findById({ _id: id });
+
+  // if no job is found return notFound
   if (!findJob) {
     return res
       .status(StatusCodes.NOT_FOUND)
       .json({ Massage: ` Job with ${id} does not exist` });
   }
-
-  const jobUpdate = await Job.updateMany(
+  //  update operations which returns success
+  await Job.updateMany(
     { _id: id },
     {
       title,
@@ -100,23 +107,34 @@ const updateJob = async (req, res) => {
 
   return res.status(StatusCodes.OK).json({ Massage: "Successfully Updated" });
 };
+
+//  delete operations
 const deleteJob = async (req, res) => {
   const id = req.params.id;
+
+  // find a particular job with query parameter id
+
   const findJob = await Job.findById({ _id: id });
+
+  // if no job found return not found
   if (!findJob) {
     return res
       .status(StatusCodes.NOT_FOUND)
       .json({ Massage: ` Job with id-${id} does not found` });
   }
-
+  //  return success
   await Job.deleteOne({ _id: id });
 
   return res.status(StatusCodes.OK).json({ Massage: " Job deleted" });
 };
 
+//  geting a particular job with query parameter id
 const getSingleJob = async (req, res) => {
   const id = req.params.id;
   const singleJob = await Job.findById({ _id: id });
+
+  // if no job found return not found else return success
+
   if (!singleJob) {
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -127,10 +145,14 @@ const getSingleJob = async (req, res) => {
       .json({ Massage: "Single", data: singleJob });
   }
 };
-
+//  get all jobs created and search operations
 const getAllJob = async (req, res) => {
+  //  destructure query parameters
   const { jobRoles, jobType, location, minSalary, maxSalary, title } =
     req.query;
+
+  //  Query object ,when empty returns all jobs
+  // when its parameter is any of the destructured parameters returns search based on the parameter
 
   const queryObject = {};
   if (jobRoles) {

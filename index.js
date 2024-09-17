@@ -11,7 +11,6 @@ const {
   userRouter,
   jobProviderRouter,
   jobSeekerRouter,
-  jobRouter,
 } = require("./routes/routesIndex");
 
 const app = express();
@@ -27,5 +26,16 @@ app.use("/api/job", accesslogs, jobRouter);
 app.use(notFound);
 app.use(errorHandler);
 
+const server = http.createServer(app);
+
+// Initialize WebSocket server
+const io = initSocket(server); // Pass the HTTP server
+
+// Optional: Pass io to the request object (middleware) if needed in routes
+app.use((req, res, next) => {
+  req.io = io; // Attach io instance to req object
+  next();
+});
+
 dbConnect();
-app.listen(port, () => console.log(`Server listening on port ${port}....`));
+server.listen(port, () => console.log(`Server listening on port ${port}....`));

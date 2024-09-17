@@ -1,5 +1,5 @@
 const express = require("express");
-const { isLogin } = require("../lib/midlleware/auth-middleware");
+const { isLogin } = require("../lib/middleware/auth-middleware");
 const { createJobSeeker } = require("../controllers/jobSeekerController");
 const upload = require("../config/multer");
 

@@ -13,9 +13,6 @@ const {
   jobSeekerRouter,
 } = require("./routes/routesIndex");
 
-const http = require("http"); // HTTP server
-const { initSocket } = require("./config/webSocket");
-
 const app = express();
 const port = process.env.PORT || 7500;
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
@@ -25,6 +22,7 @@ app.use(express.json());
 app.use("/api/user", accesslogs, userRouter);
 app.use("/api/jobProvider", accesslogs, jobProviderRouter);
 app.use("/api/jobSeeker", accesslogs, jobSeekerRouter);
+app.use("/api/job", accesslogs, jobRouter);
 app.use(notFound);
 app.use(errorHandler);
 

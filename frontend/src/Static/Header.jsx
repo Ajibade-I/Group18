@@ -17,7 +17,7 @@ const Header = () => {
 
 
   return (
-    <div className="w-full  h-[70px] py-2  bg-[rgb(252,251,251)] flex justify-between items-center">
+    <div className="w-full h-[70px] py-2  bg-[rgb(252,251,251)] flex justify-between items-center">
         <h2 className="text-3xl montserrat-regular px-3 text-[#00b074] font-extrabold w-36">JobEntry</h2>
         <ul className="   tablet:hidden hidden text-sm sm:flex gap-5 text-[#2b3940]   px-3   font-medium">
             <NavLink to="/" className=" my-3 flex flex-col items-center gap-1  " >
@@ -59,7 +59,7 @@ const Header = () => {
             
         </ul>
 
-     <div onClick={MenuDropDown} className="mr-2 lg:hidden  "  >
+     <div onClick={MenuDropDown} className="mr-6 lg:hidden  "  >
     <GiHamburgerMenu size={22}   />
     </div>
 

@@ -19,3 +19,7 @@
 a.active hr{
   display: block;
 }
+
+.bg-covers{
+  background-image: url(/bg-header2.png);
+}

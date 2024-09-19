@@ -7,6 +7,7 @@ const {
   userRouter,
   jobProviderRouter,
   jobSeekerRouter,
+  jobRouter,
 } = require("./api/routes/routesIndex");
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/v1/users", accessLogs, userRouter);
 app.use("/api/v1/jobProviders", accessLogs, jobProviderRouter);
 app.use("/api/v1/jobSeekers", accessLogs, jobSeekerRouter);
+app.use("/api/v1/jobs", accessLogs, jobRouter);
 
 app.use(notFound);
 app.use(errorHandler);

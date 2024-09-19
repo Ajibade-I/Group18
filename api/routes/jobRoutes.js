@@ -6,7 +6,7 @@ const {
   getSingleJob,
   getAllJob,
 } = require("../controllers/jobsController");
-const { isLogin } = require("../lib/midlleware/auth-middleware");
+const { isLogin } = require("../lib/middleware/auth-middleware");
 
 const router = express.Router();
 

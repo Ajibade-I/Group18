@@ -1,10 +1,10 @@
 require("dotenv").config();
 require("express-async-errors");
-const { dbConnect } = require("./backend/config/dbConnect");
+const { dbConnect } = require("./api/config/dbConnect");
 require("colors");
 const app = require("./app");
 const http = require("http"); // HTTP server
-const { initSocket } = require("./backend/config/webSocket");
+const { initSocket } = require("./api/config/webSocket");
 
 
 const port = process.env.PORT || 7500;

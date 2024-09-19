@@ -41,7 +41,7 @@ const signup = async (req, res) => {
   const oneHour = 60 * 60 * 1000;
 
   //assign activation token to user
-  user.AccountactivationToken = token;
+  user.AccountActivationToken = token;
   user.AccountTokenExpires = new Date(Date.now() + oneHour);
 
   await user.save();

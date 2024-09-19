@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { use } = require("../routes/jobProviderRoutes");
 
 const userSchema = new mongoose.Schema(
   {
@@ -28,8 +29,11 @@ const userSchema = new mongoose.Schema(
       enum: ["jobSeeker", "jobProvider"], 
       required: true,
     },
-    imageUrl: String, 
-    AccountactivationToken: String,
+    imageUrl: String,
+    city: String,
+    state: String,
+    country: String,
+    AccountActivationToken: String,
     AccountTokenExpires: Date,
     passwordResetToken: String,
     passwordResetExpired: Date,
@@ -42,3 +46,4 @@ const userSchema = new mongoose.Schema(
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+module.exports = userSchema;

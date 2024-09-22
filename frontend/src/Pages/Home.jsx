@@ -1,6 +1,9 @@
 import Category from "../Components/Category"
+import ClientCard from "../Components/ClientCard"
 import Hero from "../Components/Hero"
+import JobListing from "../Components/JobListing"
 import SearchCard from "../Components/SearchCard"
+import TalentCard from "../Components/TalentCard"
 
 
 const Home = () => {
@@ -9,6 +12,9 @@ const Home = () => {
       <Hero/>
       <SearchCard/>
       <Category/>
+      <TalentCard/>
+      <JobListing/>
+      <ClientCard/>
     </div>
   )
 }

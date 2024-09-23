@@ -6,10 +6,10 @@ export default {
     extend: {
       screens :{
         laptopSmall: { max: '1024px' },
-        tablet: { max: '768px' },
+        tablet: { max: '765px' },
         premobile: { max: '650px' },
         premobile1: { max: '550px' },
-        mobile: { max: '425px' },
+      
         phone: { max: '375px' },
         radio: { max: '330px' },
         sm: '640px',

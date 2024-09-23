@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <div className="w-full    h-[70px]  bg-[rgba(252,251,251)] flex justify-between items-center ">
         <h2 className="text-3xl montserrat-regular px-14 tablet:px- text-[#00b074] font-extrabold w-36">JobEntry</h2>
-        <ul className="   tablet:hidden hidden text-sm sm:flex gap-5 text-[#2b3940]  font-medium">
+        <ul className="   tablet:hidden md:hidden hidden text-sm sm:flex gap-5 text-[#2b3940]  font-medium">
             <NavLink to="/" className=" my-3 flex flex-col items-center gap-1  " >
                 <p>HOME</p>
                  <hr className="hidden w-2/4 h-[1.5px] border-none bg-[#00b074]"/> 

@@ -2,7 +2,7 @@
 
 const SearchCard = () => {
   return (
-    <div className="w-full bg-[#00b074] h-[150px] flex items-center justify-around tablet:flex-wrap tablet:h-[300px]">
+    <div className="w-full bg-[#00b074] h-[150px] flex items-center justify-around tablet:flex-wrap md:flex-wrap tablet:h-[300px]">
      
      <input type="text" placeholder="KeyWord" className="p-3 w-[300px] outline-none tablet:p-2"/>
      <select className="text-[#2b3940]  p-3 w-[300px] tablet:p-2 outline-none">

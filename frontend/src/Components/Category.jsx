@@ -12,12 +12,12 @@ import pix3 from "../assets/icons8-avatar-48.png"
 const Category = () => {
     
   return (
-    <div className="w-full  text-[#2b3940]  flex flex-col justify-center  items-center my-24">
+    <div className="w-full  text-[#2b3940]  flex flex-col  justify-center  items-center my-24">
         <h2 className=" font-bold text-4xl tablet:text-3xl">Explore By Category</h2>
          
         
        
-    <div className="flex flex-wrap  items-center justify-center gap-16  tablet:gap-5 p-6 my-14">
+    <div className="flex flex-wrap   items-center justify-center gap-16 md:gap-2 tablet:gap-5 p-6 my-14">
      
      <Card image={pix1} title = "Marketing" text = "123 vacancy"/>
       <Card image={pix2} title = "Cutomer Service" text = "123 vacancy"/>

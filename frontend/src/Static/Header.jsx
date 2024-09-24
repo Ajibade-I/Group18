@@ -1,7 +1,7 @@
-import {useState} from "react";
-import { NavLink} from "react-router-dom"
-import { MdArrowDropDown, MdClose} from "react-icons/md";
-import { GiHamburgerMenu } from "react-icons/gi"
+import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdArrowDropDown, MdClose } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 
 const Header = () => {
@@ -50,10 +50,14 @@ const Header = () => {
 
             <div className=" gap-5 flex px-2 mr-12"> 
             <button className="w-[140px] h-[40px] bg-[#00b074] text-white  rounded-md">
+                <NavLink to="/login">
                 LOGIN
+                </NavLink>
             </button>
             <button className="w-[140px] h-[40px] bg-[#00b074] text-white rounded-md">
+                <NavLink to="register"> 
                 REGISTER
+                </NavLink>
             </button>
             </div>  
             

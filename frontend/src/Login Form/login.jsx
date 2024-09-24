@@ -1,4 +1,5 @@
-import './login.css'
+import { NavLink } from "react-router-dom";
+import './login.css';
 
 const LoginForm = () => {
     return ( 
@@ -7,8 +8,16 @@ const LoginForm = () => {
                 <div className="login-cards">
 
                     <div className="job-info">
-                        <div className="job-seeker">Job Seeker</div>
-                        <div className="job-provider">Job Provider</div>
+                        <div className="job-seeker">
+                            <NavLink to="/joblist">
+                            Job Seeker
+                            </NavLink>
+                            </div>
+                        <div className="job-provider">
+                            <NavLink  to="/joblist">
+                            Job Provider
+                            </NavLink>
+                            </div>
                     </div>
 
                 {/* div card for names and email */}

@@ -80,7 +80,7 @@
 
 .span-text{
     font-size: 17px;
-    color: #696969;
+    color: #2B3940;
     font-weight: 500;
 }
 
@@ -124,7 +124,7 @@
     height: 50px;
     border-radius: 5px;
     margin-top: 5px;
-    border: 0.8px #a0a0a0 solid;
+    border: 0.8px #2B3940 solid;
 }
 
 .input-information input{
@@ -187,7 +187,7 @@
     margin-left: 3%;
     font-weight: 500;
     font-size: 17px;
-    color: #696969;
+    color: #2B3940;
 }
 
 .login-way{

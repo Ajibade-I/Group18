@@ -17,7 +17,7 @@ const Category = () => {
          
         
        
-    <div className="flex flex-wrap   items-center justify-center gap-16 md:gap-2 tablet:gap-5 p-6 my-14">
+    <div className="flex flex-wrap   items-center justify-center gap-16 md:gap-2 tablet:gap-5  p-6 my-14">
      
      <Card image={pix1} title = "Marketing" text = "123 vacancy"/>
       <Card image={pix2} title = "Cutomer Service" text = "123 vacancy"/>

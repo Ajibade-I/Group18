@@ -7,11 +7,11 @@ import { TiTick } from "react-icons/ti";
 
 const TalentCard = () => {
   return (
-    <div className="w-full flex tablet:gap-8 gap-10 tablet:flex-col md:flex-col   ">
+     <div className="w-full flex tablet:gap-8 gap-10 tablet:flex-col md:flex-col  ">
         
         <div className="h-[625px]  tablet:relative bottom-32 w-[700px] tablet:h-[400px] tablet:w-full ">
    
-       <img src={pix2} className=" w-[280px] tablet:w-[130px] tablet:left-0 tablet:ml-32 tablet:mt-48  absolute  left-72  ml-14 mt-10"/>
+     <img src={pix2} className=" w-[280px] tablet:w-[130px] tablet:left-0 tablet:ml-32 tablet:mt-48  absolute  left-72  ml-14 mt-10"/>
      
         <img src={pix1} className="absolute w-[320px] tablet:w-[130px] tablet:h-[160px] ml-10 tablet:left-0 tablet:ml-0  tablet:mt-40"/>
         
@@ -19,9 +19,9 @@ const TalentCard = () => {
         <img src={pix3} className="w-[281px]  tablet:w-[130px]  absolute  mt-80  ml-20 tablet:left-0 tablet:ml-8  "/>
         
        
-       <img src={pix} className="w-full h-[620px] object-contain  "/>
+     <img src={pix} className="w-full h-[620px] object-contain  "/>
        
-       </div> 
+       </div>  
        <div className="py-8 tablet:py-0 text-[#2b3940]">
         <h2 className="font-bold text-4xl tablet:text-2xl tablet:w-[300px] montserrat-regular  w-[600px]">We Help To Get The Best Job And Find A Talent</h2>
         <p className="w-[400px] py-4 tablet:w-[300px]">Lorem ipsum dolor sit amet, Fusce rutrum nibh nec nulla eleife consectetur adipiscing elit.

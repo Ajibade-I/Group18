@@ -25,3 +25,9 @@ a.active hr{
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
   height: 100vh;
 }
+
+.bg-coverabout{
+  background-image: url(/bg-header.png);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
+  height: 50vh;
+}

@@ -1,12 +1,14 @@
-import { Routes, Route } from "react-router-dom"
-import Header from "./Static/Header"
-import Home from "./Pages/Home"
-import Footer from "./Static/Footer"
+import { Route, Routes } from "react-router-dom"
+import LoginForm from "./Login Form/login"
 import About from "./Pages/About"
+import Contact from "./Pages/Contact"
+import Home from "./Pages/Home"
 import Jobdetails from "./Pages/Jobdetails"
 import Joblist from "./Pages/Joblist"
-import  Contact from "./Pages/Contact"
 import Jobs from "./Pages/Jobs"
+import Footer from "./Static/Footer"
+import Header from "./Static/Header"
+import Registration from "./Register Form/register"
 
 
 
@@ -24,6 +26,8 @@ const App=() => {
             <Route path="/jobs" element={<Jobs/>}/>
             <Route path="/joblist" element={<Joblist/>}></Route>
             <Route path="/jobdetails" element={<Jobdetails/>}></Route>
+            <Route path="/register" element={<Registration />} /> 
+            <Route path="/login" element={<LoginForm />} /> 
         </Routes>
        <Footer/>
 

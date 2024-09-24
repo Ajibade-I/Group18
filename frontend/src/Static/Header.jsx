@@ -55,7 +55,7 @@ const Header = () => {
                 </NavLink>
             </button>
             <button className="w-[140px] h-[40px] bg-[#00b074] text-white rounded-md">
-                <NavLink to="register"> 
+                <NavLink to="/register"> 
                 REGISTER
                 </NavLink>
             </button>

@@ -9,12 +9,13 @@ export default {
         tablet: { max: '768px' },
         premobile: { max: '650px' },
         premobile1: { max: '550px' },
-        mobile: { max: '425px' },
+      
         phone: { max: '375px' },
         radio: { max: '330px' },
         sm: '640px',
-        md: '768px',
+        
         lg: '1024px',
+        xlg:"1440px",
         xl: '1280px',
         '2xl': '1536px'
       }

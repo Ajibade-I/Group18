@@ -15,7 +15,7 @@ import Registration from "./Register Form/register"
 
 const App=() => {
   return (
-    <div className="tablet:px-[4vw] sm:px-[2vw] md:px-[7vw] lg:px-[2vw] " >
+    <div className=" z-10 bg-[#F2F2F2] tablet:px-[4vw] sm:px-[2vw] md:px-[7vw] lg:px-[2vw] " >
  
      <Header/>
        

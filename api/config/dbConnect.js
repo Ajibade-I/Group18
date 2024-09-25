@@ -3,6 +3,11 @@ const conn = mongoose.connection;
 
 const dbConnect = () => {
   mongoose.connect(process.env.MONGO_URI);
+  mongoose.connect(process.env.MONGO_URI)
+  .catch(error => console.log("Connection Error: ", error));
+
+
+
   conn.on("error", (error) =>
     console.log("Mongoose connection error: ", error)
   );

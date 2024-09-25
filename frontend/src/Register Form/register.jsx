@@ -1,91 +1,170 @@
 import './register.css';
 // import meeting from '../img/meeting.jpg';
-import {useNavigate} from 'react-router-dom'
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Registration = () => {
 
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phone: '',
+        role: ''  // Default to jobSeeker
+    });
+
     const navigate = useNavigate();
 
-    const goToLogin = useCallback(() =>{
-        navigate ('/login');
-    },[navigate]
-);
+    const goToLogin = useCallback(() => {
+        navigate('/login');
+    }, [navigate]);
 
+    // Handle input changes
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-    return ( 
+    // Handle form submission for signup
+    const handleSignup = async () => {
+        try {
+            const response = await fetch('http://localhost:7500/api/v1/users/signup', {
+
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: formData.name,
+                    email: formData.email,
+                    password: formData.password,
+                    role: formData.role,
+                    phone: formData.phone
+                }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert('Signup successful');
+                navigate('/login');
+            } else {
+                alert(result.message || 'Signup failed');
+            }
+        } catch (error) {
+            console.error('Error signing up:', error);
+            alert('An error occurred. Please try again.');
+        }
+    };
+
+    return (
         <div className="register-form">
             <div className="create-account-card">
-                {/* <img src={meeting} alt="backroung image" /> */}
-
                 <div className="register-content">
                     <div className="register-content-title">Create An Account</div>
                 </div>
-
-
             </div>
-            
             <div className="register-card">
-
-                {/* div card for names and email */}
-                
                 <div className="email-names">
                     <div className="names">
                         <div className="span-text">Name</div>
                         <div className="input-info">
-                            <input type="text" placeholder='Name'/>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                placeholder='Name' 
+                                value={formData.name}
+                                onChange={handleChange} 
+                                required/>
                         </div>
                     </div>
-
                     <div className="names">
                         <div className="span-text">Email</div>
                         <div className="input-info">
-                            <input type="text" placeholder='Email'/>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                placeholder='Email' 
+                                value={formData.email}
+                                onChange={handleChange} 
+                                required/>
                         </div>
                     </div>
                 </div>
-
-                {/* Div card for password and phone number */}
                 <div className="email-names">
                     <div className="passwords-number">
-                        <div className="span-text">Passowrd</div>
+                        <div className="span-text">Password</div>
                         <div className="input-information">
-                            <input type="password" placeholder='********'/>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                placeholder='********' 
+                                value={formData.password}
+                                onChange={handleChange} 
+                                required/>
                         </div>
                     </div>
-
                     <div className="passwords-number">
                         <div className="span-text">Confirm Password</div>
                         <div className="input-information">
-                            <input type="password" placeholder='********'/>
+                            <input 
+                                type="password" 
+                                name="confirmPassword" 
+                                placeholder='********' 
+                                value={formData.confirmPassword}
+                                onChange={handleChange} 
+                                required/>
                         </div>
                     </div>
-
                     <div className="passwords-number">
                         <div className="span-text">Phone</div>
                         <div className="input-information">
-                            <input type="text" placeholder='Phone Number'/>
+                            <input 
+                                type="text" 
+                                name="phone" 
+                                placeholder='Phone Number' 
+                                value={formData.phone}
+                                onChange={handleChange} 
+                                required/>
                         </div>
                     </div>
                 </div>
 
-                {/* Div for SIGN UP Button */}
-                <div className="sign-up">                  
-                        <div className="submit-info">
-                            <input type="button" value="SIGN UP"/>
+                {/* Role Selection */}
+                <div className="email-names">
+                    <div className="names">
+                        <div className="span-text">Role</div>
+                        <div className="input-info">
+                            <select name="role" value={formData.role} onChange={handleChange}  required>
+                                <option value="" disabled selected>Choose Role</option>
+                                <option value="jobSeeker">Job Seeker</option>
+                                <option value="jobProvider">Job Provider</option>
+                            </select>
                         </div>
+                    </div>
                 </div>
 
-                {/* Login form if you have an account */}
+                <div className="sign-up">
+                    <div className="submit-info">
+                        <input 
+                            type="button" 
+                            value="SIGN UP" 
+                            onClick={handleSignup} 
+                         required/>
+                    </div>
+                </div>
+
                 <div className="login-card">
                     <div className="have-account">Already have an account?</div>
                     <div className="login-way" onClick={goToLogin}>Login</div>
                 </div>
             </div>
-
         </div>
-     );
-}
- 
+    );
+};
+
 export default Registration;

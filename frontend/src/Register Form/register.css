@@ -137,7 +137,21 @@
     font-weight: 500;
 }
 
+/* ------Information related to roles---- */
 
+.input-info select {
+    width: 95%;
+    height: 90%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    padding-left: 20px;
+    font-weight: 500;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* Remove default dropdown styles */
+    background: none; 
+}
 
 
 /* ---------SIGN UP BUTTON -------*/
@@ -195,4 +209,44 @@
     font-size: 17px;
     color: #00B074;
     cursor: pointer;
+}
+
+
+/* --Responsivess part--- */
+
+@media (max-width: 780px){
+
+    .register-content{
+        /* background-color: #a0a0a0; */
+        width: 80%;
+    }
+
+    .register-content-title{
+        font-size: 30px;
+        width: 70%;
+    }
+
+    .email-names{
+    
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .names{
+        /* background-color: aqua; */
+        width: 94%;
+    }
+
+    .passwords-number{
+        /* background-color: aqua; */
+        width: 94%;
+
+    }
+    .input-information{
+        /* background-color: brown; */
+        width: 100%;
+    }
+
+
 }

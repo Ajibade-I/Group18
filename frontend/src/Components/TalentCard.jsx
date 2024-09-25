@@ -7,7 +7,7 @@ import { TiTick } from "react-icons/ti";
 
 const TalentCard = () => {
   return (
-     <div className="w-full flex tablet:gap-8 gap-10 tablet:flex-col md:flex-col  ">
+     <div className="w-full flex tablet:gap-8 gap-10 tablet:flex-col  ">
         
         <div className="h-[625px]  tablet:relative bottom-32 w-[700px] tablet:h-[400px] tablet:w-full ">
    
@@ -24,21 +24,21 @@ const TalentCard = () => {
        </div>  
        <div className="py-8 tablet:py-0 text-[#2b3940]">
         <h2 className="font-bold text-4xl tablet:text-2xl tablet:w-[300px] montserrat-regular  w-[600px]">We Help To Get The Best Job And Find A Talent</h2>
-        <p className="w-[400px] py-4 tablet:w-[300px]">Lorem ipsum dolor sit amet, Fusce rutrum nibh nec nulla eleife consectetur adipiscing elit.
-             Fusce rutrum nibh nec nulla eleife   
+        <p className="w-[400px] py-4 tablet:w-[300px]">We believe that finding the right job should be simple,efficint and empowering.Our mission is to
+          connect job seekers with meaningful opportunities across industries,helping job seekers and job providers alike achieve their goals.
         </p>
           <div className="flex flex-col  gap-4">
           <span className="flex items-center gap-2">
             <TiTick color={`#00b074`} />
-            Fusce rutrum nibh nec nulla eleife 
+          Extensive Job Listings
         </span>
         <span className="flex items-center gap-2 ">
             <TiTick color={`#00b074`} />
-            Fusce rutrum nibh nec nulla eleife 
+            Real-Time Job Alerts
         </span>
         <span className="flex items-center gap-2">
             <TiTick color={`#00b074`} />
-            Fusce rutrum nibh nec nulla eleife 
+            Employer Connections
         </span>
           </div>
           <button className="p-3 my-8 lg:w-[200px] bg-[#00b074] text-white rounded tablet:w-full md:w-full" >
